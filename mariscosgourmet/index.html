@@ -13,7 +13,7 @@
 :root{
   --night:#05202b; --night-2:#0a3040; --night-3:#0f3d50;
   --coral:#ff5a3c; --coral-2:#e2411f; --sand:#f8f0e3; --sand-2:#efe3d0; --gold:#f5b841;
-  --ink:#10222b; --mute:#9db6c2; --mute-d:#5d7480;
+  --ink:#10222b; --mute:#9db6c2; --mute-d:#5d7480; --mute-dd:#47606c;
   --disp:"Fraunces",Georgia,serif; --font:"Figtree",system-ui,sans-serif;
   --ease:cubic-bezier(.2,.8,.2,1);
   color-scheme:dark;
@@ -41,9 +41,9 @@ section{position:relative}
 .splash{clip-path:inset(0 0 0 0)}
 header{animation:fade .5s ease .6s both}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-.hero .wrap>div>*{animation:up .6s var(--ease) .6s both}
-.hero .wrap>div>*:nth-child(2){animation-delay:.68s}.hero .wrap>div>*:nth-child(3){animation-delay:.76s}.hero .wrap>div>*:nth-child(4){animation-delay:.84s}
-.stack{animation:up .7s var(--ease) .7s both}
+.hero-copy>*{animation:up .6s var(--ease) .6s both}
+.hero-copy>*:nth-child(2){animation-delay:.68s}.hero-copy>*:nth-child(3){animation-delay:.76s}.hero-copy>*:nth-child(4){animation-delay:.84s}.hero-copy>*:nth-child(5){animation-delay:.92s}
+.hero-visual{animation:up .7s var(--ease) .75s both}
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.splash{display:none}}
 
@@ -76,31 +76,41 @@ nav a:hover{opacity:1}
 @media(max-width:420px){.logo img{height:38px}}
 
 /* hero */
-.hero{min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:120px 0 90px}
-.hero-bg{position:absolute;inset:-6%;background:url(img/langostinos.jpg) center/cover;filter:blur(34px) saturate(1.4) brightness(.55);transform:scale(1.1)}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(900px 600px at 15% 30%,rgba(255,90,60,.25),transparent 60%),linear-gradient(180deg,rgba(5,32,43,.35),var(--night) 98%)}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
-.hero h1{word-spacing:.12em;font-size:clamp(3.2rem,8.6vw,7.4rem);margin:22px 0 24px;font-weight:800}
-.hero h1 em{font-style:italic;font-weight:500;color:var(--coral)}
-.hero .lead{font-size:1.2rem;color:#cfe0e8;max-width:46ch;margin-bottom:34px}
+.hero{min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:120px 0 80px;background:radial-gradient(900px 620px at 12% 24%,rgba(255,90,60,.22),transparent 62%),linear-gradient(180deg,var(--night),var(--night-2))}
+.waves{position:absolute;left:0;right:0;bottom:0;width:100%;height:150px;z-index:1;pointer-events:none}
+.waves path{fill:none;stroke:rgba(255,255,255,.09);stroke-width:1.5}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:center}
+.hero h1{word-spacing:.1em;font-size:clamp(3rem,7.6vw,6rem);margin:22px 0 24px;font-weight:800}
+.hero h1 em{font-style:normal;font-weight:800;color:var(--coral)}
+.hero .lead{font-size:1.2rem;color:#cfe0e8;max-width:46ch;margin-bottom:30px}
+.hero .open{margin-bottom:6px;background:rgba(255,255,255,.12)}
+.quick{margin-bottom:30px}
+.quick>span{display:block;font-weight:700;font-size:.9rem;color:var(--mute);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:6px 18px 6px 6px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);color:#e9f1f4;font:700 .92rem var(--font);cursor:pointer;transition:background .25s,border-color .25s,transform .25s var(--ease)}
+.chip img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.chip:hover{border-color:#fff;background:rgba(255,255,255,.14)}
+.chip:active{transform:scale(.97)}
+.chip.in{background:var(--sand);color:var(--ink);border-color:var(--sand)}
+.chip .n{display:none;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--coral-2);color:#fff;font-size:.78rem;line-height:22px;text-align:center}
+.chip.in .n{display:inline-block}
 .cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero .open{margin-bottom:6px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px)}
-.stack{position:relative;height:clamp(380px,52vw,620px)}
-.stack figure{position:absolute;margin:0;border-radius:26px;overflow:hidden;box-shadow:0 40px 70px -24px #000a,0 0 0 6px rgba(255,255,255,.08);transition:transform .25s ease-out}
-.stack img{width:100%;height:100%;object-fit:cover}
-.st1{width:62%;aspect-ratio:1;top:2%;left:0;--r:-4deg}
-.st2{width:48%;aspect-ratio:4/5;top:30%;right:0;--r:5deg}
-.st3{width:42%;aspect-ratio:1;bottom:0;left:16%;--r:-2deg}
-.stack figure{transform:rotate(var(--r)) translate(var(--tx,0),var(--ty,0))}
-.stack figcaption{position:absolute;left:12px;bottom:12px;background:rgba(5,32,43,.78);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:700}
-.seal{position:absolute;right:-2%;top:-4%;width:128px;height:128px;z-index:3;animation:spin 22s linear infinite}
-.seal text{font:700 11.5px var(--font);letter-spacing:.2em;fill:var(--sand);text-transform:uppercase}
-@keyframes spin{to{transform:rotate(360deg)}}
-.seal-wrap{position:absolute;right:-1%;top:-5%;width:128px;height:128px;z-index:3;display:grid;place-items:center;background:var(--coral);border-radius:50%;box-shadow:0 16px 30px -10px #000}
-.seal-wrap .seal{position:absolute;inset:0;right:auto;top:auto}
-.seal-wrap b{font-family:var(--disp);font-size:1.6rem;position:relative}
-.scroll{position:absolute;left:50%;bottom:26px;z-index:3;transform:translateX(-50%);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.stack{height:auto;aspect-ratio:1/.95;order:-1;max-width:460px;margin-inline:auto;width:100%}.hero{padding-top:112px}.scroll{display:none}}
+.hero-visual{position:relative;height:clamp(440px,44vw,600px)}
+.hero-visual figure{position:absolute;margin:0;overflow:hidden;border-radius:26px;box-shadow:0 40px 70px -26px #000c}
+.hero-visual img{width:100%;height:100%;object-fit:cover}
+.ph1{right:0;top:0;width:76%;aspect-ratio:4/5}
+.ph2{left:0;top:6%;width:32%;aspect-ratio:1;border:6px solid var(--night-2);border-radius:26px}
+.hero-visual figcaption{position:absolute;right:14px;bottom:14px;background:rgba(5,32,43,.82);padding:7px 14px;border-radius:999px;font-size:.8rem;font-weight:700}
+.order{position:absolute;left:0;bottom:0;width:min(330px,74%);z-index:3;background:var(--sand);color:var(--ink);border-radius:22px 22px 22px 6px;padding:18px 18px 16px;box-shadow:0 34px 56px -22px #000d;display:grid;gap:12px}
+.order small{font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute-dd)}
+.order p{font-size:.95rem;line-height:1.45;margin:0}
+.order ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-weight:700;font-size:.98rem}
+.order li{animation:up .4s var(--ease) both}
+.order.ex ul{font-weight:600;color:var(--mute-dd)}
+.order .btn{height:46px;width:100%;background:#0e7a40;box-shadow:none;font-size:.92rem}
+.order .btn:hover{box-shadow:0 14px 26px -14px #128c4a}
+@media(min-width:901px){.hero .open{display:none}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:104px}.hero-visual{height:480px;max-width:520px;width:100%;margin-inline:auto}.ph1{width:70%}.ph2{width:34%}.order{width:min(320px,86%)}}
 
 /* marquee */
 .band{margin-inline:-3%!important;background:var(--coral);color:#fff;overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);margin:-34px -2% 0;position:relative;z-index:5;padding:16px 0;box-shadow:0 20px 40px -20px #000}
@@ -236,25 +246,38 @@ body.cart-on .wa{display:none}
 
 <main>
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
+  <svg class="waves" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 180 10, 360 70, 540 40 S 900 10, 1080 40 S 1300 70, 1440 36"/><path d="M0 80 C 200 50, 380 110, 560 80 S 920 50, 1100 80 S 1320 108, 1440 76"/><path d="M0 120 C 160 92, 340 146, 520 120 S 880 92, 1060 120 S 1300 146, 1440 116"/></svg>
   <div class="wrap">
-    <div>
+    <div class="hero-copy">
       <span class="open" data-open><i></i><span>Horario</span></span>
       <h1>Del mar<br>a tu <em>mesa.</em></h1>
       <p class="lead">Langostinos a la parrilla, ceviches, cócteles de camarón y pizza de mariscos. Hechos al momento en Valledupar.</p>
+      <div class="quick">
+        <span>Toca lo que se te antoje y tu pedido se escribe solo:</span>
+        <div class="chips">
+          <button class="chip" type="button" data-n="Langostinos a la parrilla"><img src="img/langostinos.jpg" alt="" width="40" height="40">Langostinos<span class="n"></span></button>
+          <button class="chip" type="button" data-n="Ceviche de camarón"><img src="img/ceviche.jpg" alt="" width="40" height="40">Ceviche<span class="n"></span></button>
+          <button class="chip" type="button" data-n="Cóctel de camarones"><img src="img/cocktel.jpg" alt="" width="40" height="40">Cóctel<span class="n"></span></button>
+          <button class="chip" type="button" data-n="Pizza de mariscos"><img src="img/pizza.jpg" alt="" width="40" height="40">Pizza<span class="n"></span></button>
+        </div>
+      </div>
       <div class="cta">
-        <a class="btn" href="#carta">Armar mi pedido</a>
+        <a class="btn" href="#carta">Ver la carta completa</a>
         <a class="btn ghost" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener">@mariscosgourmet</a>
       </div>
     </div>
-    <div class="stack" aria-hidden="true">
-      <div class="seal-wrap"><svg class="seal" viewBox="0 0 128 128"><defs><path id="c" d="M64 64m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#c">Fresco ✦ Gourmet ✦ Valledupar ✦ </textPath></text></svg><b>🦞</b></div>
-      <figure class="st1" data-d="14"><img src="img/ceviche.jpg" alt=""><figcaption>Ceviche de camarón</figcaption></figure>
-      <figure class="st2" data-d="-20"><img src="img/cocktel.jpg" alt=""><figcaption>Cóctel de camarones</figcaption></figure>
-      <figure class="st3" data-d="10"><img src="img/langostinos.jpg" alt=""><figcaption>Langostinos</figcaption></figure>
+    <div class="hero-visual">
+      <figure class="ph1"><img src="img/langostinos.jpg" alt="Langostinos a la parrilla con arroz de zanahoria, patacones y salsas" width="509" height="510"><figcaption>Langostinos a la parrilla</figcaption></figure>
+      <figure class="ph2"><img src="img/ceviche.jpg" alt="Ceviche de camarón con aguacate" width="509" height="577"></figure>
+      <div class="order ex" id="order" aria-live="polite">
+        <small id="ordertag">Así llega tu pedido · ejemplo</small>
+        <p>Hola, quiero hacer este pedido:</p>
+        <ul id="orderlines"></ul>
+        <p>¿Me confirman precio y tiempo de entrega?</p>
+        <a class="btn" id="ordersend" href="https://wa.me/573008718556" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
     </div>
   </div>
-  <span class="scroll">Desliza</span>
 </section>
 
 <div class="band" aria-hidden="true"><div>
@@ -410,20 +433,20 @@ function render(){
   const lines=Object.entries(cart).map(([k,v])=>`• ${v} x ${k}`).join('\n');
   $('#cartsend').href='https://wa.me/573008718556?text='+encodeURIComponent('Hola, quiero hacer este pedido:\n'+lines+'\n\n¿Me confirman precio y tiempo de entrega?');
   $$('.dish').forEach(d=>{const q=cart[d.dataset.n]||0,b=$('.add',d);b.classList.toggle('in',q>0);b.textContent=q?`✓ ${q} en el pedido · +`:'+ Agregar'});
+  $$('.chip').forEach(c=>{const q=cart[c.dataset.n]||0;c.classList.toggle('in',q>0);$('.n',c).textContent=q?'×'+q:''});
+  const ex=n===0,ul=$('#orderlines'),sig=ex?'ex':Object.entries(cart).join('|');
+  $('#order').classList.toggle('ex',ex);
+  $('#ordertag').textContent=ex?'Así llega tu pedido · ejemplo':'Tu pedido';
+  if(ul.dataset.sig!==sig){ul.dataset.sig=sig;ul.innerHTML='';(ex?[['Langostinos a la parrilla',1],['Ceviche de camarón',2]]:Object.entries(cart)).forEach(([k,v])=>{const li=document.createElement('li');li.textContent='• '+v+' x '+k;ul.append(li)})}
+  const os=$('#ordersend');os.textContent=ex?'Escribir por WhatsApp':'Enviar por WhatsApp';os.href=ex?'https://wa.me/573008718556':$('#cartsend').href;
 }
+$$('.chip').forEach(c=>c.addEventListener('click',()=>{const k=c.dataset.n;cart[k]=(cart[k]||0)+1;render()}));
 $$('.add').forEach(b=>b.addEventListener('click',()=>{const k=b.closest('.dish').dataset.n;cart[k]=(cart[k]||0)+1;render()}));
 $('#cartclear').addEventListener('click',()=>{for(const k in cart)delete cart[k];render()});
+render();
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 $$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*90+'ms';io.observe(el)});
-// parallax del hero
-const st=$('.stack');
-if(st&&!matchMedia('(prefers-reduced-motion:reduce)').matches&&matchMedia('(hover:hover)').matches){
-  addEventListener('pointermove',e=>{
-    const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
-    $$('figure',st).forEach(f=>{const d=+f.dataset.d;f.style.setProperty('--tx',x*d+'px');f.style.setProperty('--ty',y*d+'px')});
-  },{passive:true});
-}
 </script>
 </body>
 </html>
