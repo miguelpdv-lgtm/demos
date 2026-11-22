@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maxxoclean</title>
+<meta name="description" content="Lavado y desinfección de muebles, colchones, alfombras, cortinas, cocinas, pisos y autos en Barranquilla y área metropolitana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one soap bubble holding the real logo. Scrolling zooms into it and pops it, then the page moves like a dive: horizontal services, stacked work, a path that fills, a wordmark that widens. */
+:root{
+  --abyss:#04223f;
+  --deep:#06335c;
+  --ocean:#0b6aa3;
+  --aqua:#3fdcec;
+  --foam:#f2fcfe;
+  --coral:#ff6a3c;
+  --ink:#062038;
+  --muted:#8fb6cc;
+  --line:rgba(255,255,255,.16);
+  --display:"Anybody","Arial Narrow",system-ui,sans-serif;
+  --body:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--abyss);color:#fff;font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);margin:0;font-weight:800;letter-spacing:-.015em;line-height:.98;text-wrap:balance;font-variation-settings:"wdth" 88}
+p{margin:0}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:70}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--aqua),var(--coral))}
+
+/* nav */
+.nav{position:fixed;inset:3px 0 auto 0;z-index:60;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.nav.solid{background:rgba(4,34,63,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:70px;max-width:none}
+.brand{display:inline-flex;text-decoration:none}
+.brand .logo{height:42px;border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden;padding:0 12px;box-shadow:0 0 0 2px rgba(63,220,236,.5)}
+.brand .logo img{height:auto;width:140px;display:block}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{display:block;padding:10px 14px;border-radius:99px;text-decoration:none;color:#d4ecf6;font-size:.95rem;transition:background .2s}
+.nav ul a:hover{background:rgba(255,255,255,.1)}
+.btn{--bg:var(--coral);--fg:#2a0d03;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:99px;border:0;background:var(--bg);color:var(--fg);font:700 1rem var(--body);text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;will-change:transform}
+.btn:hover{box-shadow:0 12px 30px -10px rgba(255,106,60,.7)}
+.btn.ghost{--bg:transparent;--fg:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.btn.ghost:hover{box-shadow:none;background:rgba(255,255,255,.08);border-color:#fff}
+.btn.dark{--bg:var(--deep);--fg:#fff}
+.btn.sm{min-height:42px;padding:0 18px;font-size:.92rem}
+.btn svg{width:20px;height:20px;flex:none}
+.nav .btn{margin-left:6px}
+
+/* hero scene */
+.hero{position:relative;height:330vh;background:var(--abyss)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:linear-gradient(180deg,#118bcb 0%,#07416f 52%,#04223f 100%);--dim:0}
+.bgimg{position:absolute;left:-6%;top:-6%;max-width:none;width:112%;height:112%;object-fit:cover;opacity:.9;will-change:transform;pointer-events:none;animation:bgdrift 26s ease-in-out infinite alternate}
+@keyframes bgdrift{from{translate:-1.2% 0}to{translate:1.2% -1%}}
+.dim{position:absolute;inset:0;background:var(--abyss);opacity:var(--dim);pointer-events:none}
+.rays{position:absolute;inset:-25% -15%;background:repeating-linear-gradient(100deg,transparent 0 8%,rgba(255,255,255,.09) 11%,transparent 15% 23%);filter:blur(20px);mix-blend-mode:screen;animation:rays 22s linear infinite;pointer-events:none}
+@keyframes rays{from{transform:translateX(-9%)}to{transform:translateX(9%)}}
+#foam{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.title{position:absolute;inset:0;margin:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:clamp(12px,2.2vw,34px);padding:60px 3.5vw 90px}
+.w{font:800 clamp(2.2rem,6.1vw,6.8rem)/.95 var(--display);font-variation-settings:"wdth" 80;letter-spacing:-.02em;white-space:nowrap;color:#fff;will-change:transform,opacity;text-shadow:0 8px 40px rgba(4,34,63,.45)}
+.w-l{text-align:right}
+.w-r{text-align:left}
+.bubble-wrap{position:relative;width:clamp(230px,33vw,540px);aspect-ratio:1;will-change:transform}
+.bubble{position:absolute;inset:0;border-radius:50%;background:
+  radial-gradient(circle at 28% 22%,rgba(255,255,255,.95) 0 2.5%,rgba(255,255,255,0) 9%),
+  radial-gradient(circle at 72% 80%,rgba(255,255,255,.35) 0 4%,rgba(255,255,255,0) 12%),
+  radial-gradient(circle,rgba(255,255,255,0) 56%,rgba(140,238,255,.3) 70%,rgba(255,255,255,.6) 79%,rgba(255,255,255,.1) 82%);
+  box-shadow:inset 0 0 70px rgba(255,255,255,.3),0 0 140px rgba(63,220,236,.4);animation:wobble 7s ease-in-out infinite}
+.bubble::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 210deg,rgba(255,120,200,.4),rgba(110,255,225,.36),rgba(120,160,255,.42),rgba(255,205,120,.34),rgba(255,120,200,.4));-webkit-mask-image:radial-gradient(circle,transparent 54%,#000 80%);mask-image:radial-gradient(circle,transparent 54%,#000 80%)}
+@keyframes wobble{0%,100%{transform:scale(1) rotate(0)}33%{transform:scale(1.025,.985) rotate(2deg)}66%{transform:scale(.985,1.02) rotate(-2deg)}}
+.bubble-wrap .logo-in{position:absolute;inset:19%}
+.logo-in img{display:block;max-width:none}
+.lg-globe{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 28px rgba(120,230,255,.55));animation:gIn 1.4s cubic-bezier(.2,.8,.2,1) both,gFloat 9s ease-in-out 1.4s infinite}
+.lg-wordw{position:absolute;left:-26%;width:152%;top:50%;transform:translateY(-62%);filter:drop-shadow(0 6px 14px rgba(2,22,44,.55));animation:wIn 1.3s cubic-bezier(.65,0,.2,1) .55s both}
+.lg-word{width:100%;height:auto}
+.lg-wordw::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.85) 50%,transparent 65%) -150% 0/60% 100% no-repeat;-webkit-mask:url(img/logo-wordmark.png) center/100% 100% no-repeat;mask:url(img/logo-wordmark.png) center/100% 100% no-repeat;animation:sheen 5.5s ease-in-out 2.4s infinite}
+.lg-tag{position:absolute;left:12%;width:76%;top:66%;height:auto;animation:tIn .9s ease-out 1.5s both}
+@keyframes gIn{from{opacity:0;transform:scale(.55) rotate(-18deg)}to{opacity:1;transform:none}}
+@keyframes gFloat{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.035) rotate(2.5deg)}}
+@keyframes wIn{from{clip-path:inset(0 100% 0 0);opacity:.2;transform:translateY(-62%) scale(.94)}to{clip-path:inset(0 0 0 0);opacity:1;transform:translateY(-62%) scale(1)}}
+@keyframes tIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes sheen{0%{background-position:-150% 0}45%,100%{background-position:250% 0}}
+.ring{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
+.ring b{position:absolute;left:0;top:0;width:min(34vw,540px);aspect-ratio:1;border-radius:50%;border:3px solid rgba(255,255,255,.9);transform:translate(-50%,-50%) scale(.2);opacity:0}
+.ring i{position:absolute;left:0;top:0;width:var(--s,10px);height:var(--s,10px);border-radius:50%;background:rgba(190,245,255,.9);transform:translate(-50%,-50%);opacity:0}
+.popped .ring b{animation:burst 1s cubic-bezier(.1,.7,.2,1) forwards}
+.popped .ring i{animation:drop .95s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes burst{0%{opacity:1;transform:translate(-50%,-50%) scale(.6)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.6)}}
+@keyframes drop{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.2)}}
+.popped .bubble-wrap{opacity:0!important;transition:opacity .1s}
+.after{position:absolute;inset:0;display:grid;place-content:center;gap:28px;text-align:center;padding:80px 6vw 120px;opacity:0;transform:translateY(24px);transition:opacity .8s .15s,transform .8s .15s;pointer-events:none}
+.after h2{font-size:clamp(2.4rem,6.4vw,6.6rem);max-width:12em;margin-inline:auto;text-shadow:0 10px 50px rgba(4,34,63,.5)}
+.after p{max-width:34em;margin-inline:auto;color:#cfe9f5;font-size:clamp(1.05rem,1.6vw,1.3rem)}
+.popped .after{opacity:1;transform:none}
+.bar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:24px;padding:24px clamp(16px,4vw,40px) 28px;z-index:4}
+.bar .l p{max-width:26em;font-size:.95rem;color:#d4ecf6;margin-bottom:14px}
+.bar .c{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.85rem;color:#cfe9f5;transition:opacity .3s}
+.bar .c i{width:1px;height:42px;background:linear-gradient(var(--aqua),transparent);animation:drip 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.bar .r{justify-self:end;text-align:right;font-size:.9rem;color:#d4ecf6}
+.bar .r b{display:block;font:700 1.5rem var(--display);font-variant-numeric:tabular-nums;color:#fff;font-variation-settings:"wdth" 90}
+
+/* statement */
+.light{background:var(--foam);color:var(--ink);color-scheme:light}
+.statement{padding:clamp(88px,14vw,190px) 0 clamp(72px,10vw,130px)}
+.statement p.big{font:800 clamp(2rem,5.4vw,5rem)/1.04 var(--display);font-variation-settings:"wdth" 78;letter-spacing:-.02em;max-width:17em;text-wrap:pretty}
+.statement .w2{color:rgba(6,32,56,.16);transition:color .25s}
+.statement .w2.on{color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:56px;color:#456a82;font-size:1.02rem}
+.facts a{color:var(--ink);font-weight:600;text-underline-offset:4px}
+.facts b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* services: horizontal pinned track */
+.svc-h{position:relative;background:var(--abyss)}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.track{display:flex;gap:22px;padding-inline:max(5vw,24px);will-change:transform;align-items:stretch}
+.pan{position:relative;flex:0 0 auto;width:min(82vw,520px);height:min(70vh,620px);border-radius:34px;padding:clamp(22px,3vw,38px);display:flex;flex-direction:column;justify-content:flex-end;gap:12px;overflow:hidden;background:linear-gradient(160deg,var(--c1),var(--c2));isolation:isolate}
+.pan:nth-child(odd){--c1:#0b6aa3;--c2:#06335c}
+.pan:nth-child(even){--c1:#0a4a7a;--c2:#052a4d}
+.pan h3{font-size:clamp(2.2rem,4.4vw,3.6rem)}
+.pan p{color:#c7e3f0;max-width:26em;font-size:1rem}
+.pan .tags{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px;padding:0;list-style:none}
+.pan .tags li{padding:5px 13px;border-radius:99px;border:1px solid var(--line);font-size:.85rem;color:#e0f2fa}
+.pan .big-ico{position:absolute;right:-6%;top:-4%;width:72%;color:rgba(63,220,236,.17);z-index:-1}
+.pan .big-ico svg{width:100%;height:auto;display:block}
+.pan.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,34,63,0) 30%,rgba(4,34,63,.92) 88%);z-index:-1}
+.pan.photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.pan.photo>img.ill{object-position:50% 0}
+.pan.intro{background:transparent;justify-content:center;width:min(86vw,560px);padding-left:0}
+.pan.intro h2{font-size:clamp(2.6rem,6vw,5.2rem)}
+.pan.intro p{font-size:1.12rem;margin-top:16px}
+.svc-hud{position:absolute;left:max(5vw,24px);right:max(calc(5vw + 64px),88px);bottom:clamp(18px,4vh,40px);display:flex;align-items:center;gap:18px;font-size:.9rem;color:#a9cbdc}
+.svc-hud .tr{flex:1;height:2px;background:var(--line);position:relative;border-radius:2px;overflow:hidden}
+.svc-hud .tr i{position:absolute;inset:0;width:var(--sp,0%);background:linear-gradient(90deg,var(--aqua),var(--coral))}
+.svc-hud b{font-variant-numeric:tabular-nums;color:#fff;min-width:3.4em;text-align:right}
+.svc-h.native .pin{position:static;height:auto;padding:72px 0 64px}
+.svc-h.native .track{overflow-x:auto;scroll-snap-type:x mandatory;transform:none!important;padding-bottom:12px;scrollbar-width:none}
+.svc-h.native .track::-webkit-scrollbar{display:none}
+.svc-h.native .pan{scroll-snap-align:center;height:min(68vh,560px)}
+.svc-h.native .pan.intro{height:auto;padding:0 0 16px}
+.svc-h.native .svc-hud{position:static;margin:20px max(5vw,24px) 0}
+
+/* work: stacked cards */
+.work{padding:clamp(72px,10vw,130px) 0 clamp(60px,8vw,110px)}
+.work h2{font-size:clamp(2.4rem,5.6vw,5rem);max-width:13em}
+.stack{margin-top:56px;position:relative}
+.card{position:sticky;top:calc(92px + var(--i)*20px);height:min(72vh,620px);margin-bottom:34px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:var(--deep);color:#fff;box-shadow:0 30px 80px -40px rgba(4,34,63,.8)}
+.card:nth-child(2){background:#0a4a7a}
+.card:nth-child(3){background:#0b6aa3}
+.card:nth-child(4){background:#052a4d}
+.card .t{padding:clamp(24px,4vw,56px);display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
+.card h3{font-size:clamp(2rem,4.4vw,4rem)}
+.card p{color:#c7e3f0;max-width:24em}
+.card .t .btn{align-self:flex-start;margin-top:6px}
+.card img{width:100%;height:100%;object-fit:cover}
+
+/* process path */
+.how{padding:clamp(80px,11vw,150px) 0}
+.how h2{font-size:clamp(2.4rem,5.6vw,5rem);max-width:13em}
+.steps{--fill:0%;position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:72px}
+.steps::before,.steps::after{content:"";position:absolute;left:0;top:27px;height:2px;border-radius:2px}
+.steps::before{right:0;background:var(--line)}
+.steps::after{width:var(--fill);background:linear-gradient(90deg,var(--aqua),var(--coral))}
+.dot{position:absolute;top:18px;left:var(--fill);width:20px;height:20px;margin-left:-10px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,rgba(190,245,255,.6) 40%,rgba(63,220,236,.4));box-shadow:0 0 24px rgba(63,220,236,.8);z-index:2}
+.step{position:relative;padding-top:74px}
+.step .n{position:absolute;top:0;left:0;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--abyss);border:2px solid var(--line);font:800 1.2rem var(--display);transition:background .4s,border-color .4s,color .4s}
+.step.on .n{background:var(--coral);border-color:var(--coral);color:#2a0d03}
+.step h3{font-size:1.6rem;margin-bottom:8px}
+.step p{color:#b4d0df;font-size:.98rem}
+
+/* quote */
+.quote{padding:clamp(72px,10vw,140px) 0;background:radial-gradient(900px 520px at 100% 0%,rgba(63,220,236,.2),transparent 70%),var(--abyss)}
+.quote h2{font-size:clamp(2.4rem,5.6vw,5rem);max-width:13em}
+.quote .sub{margin-top:18px;max-width:34em;color:#b4d0df;font-size:1.1rem}
+.q-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);margin-top:48px;align-items:start}
+.q-form{display:flex;flex-direction:column;gap:28px}
+.fld>label,.fld>.lbl{display:block;font:600 .95rem var(--body);color:var(--muted);margin-bottom:12px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 6px 0 18px;border-radius:99px;border:1.5px solid rgba(255,255,255,.24);background:transparent;color:#fff;font:500 1rem var(--body);cursor:pointer;transition:.2s}
+.opt:hover{border-color:#fff}
+.opt[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.opt .qty{display:none;align-items:center;gap:2px;margin-left:4px}
+.opt[aria-pressed="true"] .qty{display:inline-flex}
+.opt .pad{display:inline-block;width:12px}
+.opt[aria-pressed="true"] .pad{display:none}
+.qty b{min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+.qty span{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;line-height:1}
+.qty span:hover{background:var(--ocean)}
+.seg{display:inline-flex;padding:4px;border-radius:99px;border:1.5px solid rgba(255,255,255,.24)}
+.seg button{min-height:42px;padding:0 24px;border:0;border-radius:99px;background:transparent;color:#fff;font:600 1rem var(--body);cursor:pointer;transition:.2s}
+.seg button[aria-pressed="true"]{background:var(--aqua);color:var(--ink)}
+.inp{width:100%;min-height:52px;padding:0 18px;border-radius:14px;border:1.5px solid rgba(255,255,255,.24);background:rgba(255,255,255,.05);color:#fff;font:400 1rem var(--body)}
+.inp::placeholder{color:#7fa3b9}
+.inp:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 3px rgba(63,220,236,.25)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.phone{position:sticky;top:96px;border-radius:38px;padding:14px;background:#0a2a47;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+.phone-in{border-radius:26px;overflow:hidden;background:#0b141a}
+.wa-top{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#1f2c34}
+.wa-top .av{width:40px;height:40px;border-radius:50%;background:#fff;overflow:hidden;flex:none}
+.wa-top .av img{width:100%;height:100%;object-fit:cover}
+.wa-top b{display:block;line-height:1.2}
+.wa-top small{color:#8fb0c4;font-size:.8rem}
+.wa-body{padding:22px 16px 26px;min-height:300px;background-color:#0b141a;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:18px 18px;display:flex;flex-direction:column;justify-content:flex-end}
+.bubble-msg{align-self:flex-end;max-width:92%;padding:10px 14px 8px;border-radius:14px 14px 4px 14px;background:#005c4b;color:#e9fff9;font-size:.95rem;white-space:pre-wrap;word-break:break-word;animation:pop .35s cubic-bezier(.2,.9,.3,1.4)}
+.bubble-msg time{display:block;text-align:right;font-size:.7rem;color:#9fd8c9;margin-top:4px}
+@keyframes pop{from{transform:scale(.92);opacity:.4}}
+.q-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.note{font-size:.88rem;color:var(--muted);margin-top:14px}
+
+/* footer */
+footer{background:#031a31;padding:72px 0 96px;overflow:hidden;border-top:1px solid var(--line)}
+.mark{font:900 11.4vw/.95 var(--display);letter-spacing:-.03em;font-variation-settings:"wdth" 55;white-space:nowrap;color:#fff;text-align:center;margin:0 0 56px;opacity:.96}
+.f-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+.f-grid h4{margin:0 0 12px;font:600 .95rem var(--body);color:var(--muted)}
+.f-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.f-grid a{text-decoration:none;color:#d6ebf4}
+.f-grid a:hover{color:var(--coral)}
+.f-brand{display:flex;gap:16px;align-items:flex-start}
+.f-brand .av{width:84px;height:84px;border-radius:50%;overflow:hidden;background:#fff;flex:none}
+.f-brand .av img{width:100%;height:100%;object-fit:cover}
+.copy{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.88rem;color:var(--muted)}
+.fab{position:fixed;right:18px;bottom:18px;z-index:65;width:60px;height:60px;border-radius:50%;background:var(--coral);color:#2a0d03;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(0,0,0,.6);transform:scale(0);transition:transform .35s cubic-bezier(.2,.9,.3,1.4)}
+.fab.show{transform:scale(1)}
+.fab svg{width:30px;height:30px}
+
+/* static fallback (reduced motion) */
+.rm .hero{height:auto}
+.rm .stage{position:relative;height:100svh}
+.rm .bubble,.rm .rays,.rm .bgimg,.rm .lg-globe,.rm .lg-wordw,.rm .lg-wordw::after,.rm .lg-tag{animation:none}
+.rm .after{display:none}
+.rm .statement .w2{color:var(--ink)}
+
+@media (max-width:860px){
+  .nav ul{display:none}
+  .nav .btn{margin-left:auto}
+  .title{grid-template-columns:1fr;grid-template-rows:1fr auto 1fr;justify-items:center;row-gap:10px;padding:80px 16px 150px}
+  .w{font-size:clamp(2.8rem,13vw,5rem)}
+  .w-l{text-align:center;align-self:end}
+  .w-r{text-align:center;align-self:start}
+  .bubble-wrap{width:min(66vw,360px)}
+  .ring b{width:min(66vw,360px)}
+  .bar{grid-template-columns:1fr;gap:12px}
+  .bar .c,.bar .r{display:none}
+  .card{grid-template-columns:1fr;grid-template-rows:1fr 1fr;height:min(78vh,640px)}
+  .card .t{order:2;justify-content:flex-start;padding:22px}
+  .card img{order:1}
+  .steps{grid-template-columns:1fr;row-gap:40px;margin-top:48px}
+  .steps::before{right:auto;left:27px;top:0;bottom:0;width:2px;height:auto}
+  .steps::after{left:27px;top:0;width:2px;height:var(--fill)}
+  .dot{top:var(--fill);left:18px;margin:-10px 0 0 0}
+  .step{padding:8px 0 0 80px}
+  .q-grid{grid-template-columns:1fr}
+  .phone{position:static}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .two{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Maxxoclean, inicio"><span class="logo"><img src="img/wordmark-hd.png" alt="Maxxoclean" width="140" height="21"></span></a>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#cotizar">Cotizar</a></li>
+    </ul>
+    <a class="btn sm" data-mag href="https://wa.me/573023779247" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.1c-.25.7-1.45 1.33-2 1.4-.52.07-1.17.1-1.9-.12a17 17 0 0 1-1.72-.64c-3.03-1.3-5-4.35-5.15-4.55-.15-.2-1.23-1.63-1.23-3.1s.78-2.2 1.05-2.5c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.52.25.6.85 2.07.92 2.22.08.15.13.32.03.52-.1.2-.15.32-.3.5-.15.17-.32.38-.45.5-.15.15-.3.31-.13.6.18.3.78 1.28 1.67 2.07 1.14 1.02 2.1 1.33 2.4 1.48.3.15.48.12.65-.07.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.07.12.07.72-.18 1.42Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<main id="inicio">
+<!-- HERO: the bubble -->
+<section class="hero" id="hero">
+  <div class="stage" id="stage">
+    <img class="bgimg" id="bgimg" src="img/hero-bg.jpg" alt="" aria-hidden="true" fetchpriority="high"><div class="rays" aria-hidden="true"></div>
+    <canvas id="foam" aria-hidden="true"></canvas>
+    <div class="dim" aria-hidden="true"></div>
+    <h1 class="title" aria-label="Limpio de verdad. Maxxoclean">
+      <span class="w w-l" id="wl" aria-hidden="true">Limpio de</span>
+      <span class="bubble-wrap" id="bw" aria-hidden="true">
+        <span class="bubble"></span>
+        <span class="logo-in" id="logoIn"><img class="lg-globe" src="img/logo-globe.png" alt="" width="1100" height="1100"><span class="lg-wordw"><img class="lg-word" src="img/logo-wordmark.png" alt="" width="1500" height="229"></span><img class="lg-tag" src="img/logo-tagline.png" alt="" width="1000" height="68"></span>
+      </span>
+      <span class="w w-r" id="wr" aria-hidden="true">verdad</span>
+    </h1>
+    <div class="ring" id="ring" aria-hidden="true"><b></b></div>
+    <div class="after" id="after">
+      <h2>Lo que usas a diario, limpio a fondo.</h2>
+      <p>Muebles, colchones, alfombras, cortinas, cocinas, pisos y autos en Barranquilla y su área metropolitana.</p>
+    </div>
+    <div class="bar">
+      <div class="l">
+        <p>Lavado y desinfección para hogar y negocio, con los equipos adecuados.</p>
+        <a class="btn" data-mag href="#cotizar">Cotizar mi servicio</a>
+      </div>
+      <div class="c" id="hint"><span>Desliza para reventar la burbuja</span><i></i></div>
+      <div class="r"><span>Barranquilla, hora local</span><b id="clock">--:--</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="light statement" id="declaracion">
+  <div class="wrap">
+    <p class="big" id="big">Lavamos muebles, colchones, alfombras, cortinas, cocinas, pisos y autos a fondo, con los equipos adecuados, y te los dejamos secos.</p>
+    <div class="facts">
+      <span><b>11,2 mil</b> personas nos siguen en <a href="https://www.instagram.com/maxxoclean/" target="_blank" rel="noopener">Instagram</a></span>
+      <span><b>430</b> publicaciones de trabajos reales</span>
+      <span>Hogar y negocio</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES: horizontal pinned -->
+<section class="svc-h" id="servicios">
+  <div class="pin">
+    <div class="track" id="track"></div>
+    <div class="svc-hud" aria-hidden="true"><span>Servicios</span><div class="tr"><i></i></div><b id="svcCount">1 / 9</b></div>
+  </div>
+</section>
+
+<!-- WORK: stacked cards -->
+<section class="light work" id="trabajos">
+  <div class="wrap">
+    <h2>Así se ve un lavado de Maxxoclean.</h2>
+    <div class="stack">
+      <article class="card" style="--i:0">
+        <div class="t"><h3>Muebles listos para descansar</h3><p>Sofás lavados a fondo para que vuelvan a verse y sentirse como nuevos.</p><button class="btn" type="button" data-add="muebles">Cotizar muebles</button></div>
+        <img src="img/sofa-relax.jpg" alt="Mujer descansando en un sofá azul recién lavado" width="960" height="750" loading="lazy">
+      </article>
+      <article class="card" style="--i:1">
+        <div class="t"><h3>Todo seco antes de irnos</h3><p>Secado con ventilador industrial en la casa del cliente.</p><button class="btn" type="button" data-add="muebles">Cotizar muebles</button></div>
+        <img src="img/sofa-dry.jpg" alt="Sofá secándose con un ventilador industrial" width="720" height="1280" loading="lazy">
+      </article>
+      <article class="card" style="--i:2">
+        <div class="t"><h3>Overhaul con vapor</h3><p>Limpieza a vapor de puertas y cabina de tu carro.</p><button class="btn" type="button" data-add="autos">Cotizar mi carro</button></div>
+        <img src="img/car-red.jpg" alt="Limpieza a vapor de la puerta y cabina de un carro rojo" width="640" height="1136" loading="lazy">
+      </article>
+      <article class="card" style="--i:3;margin-bottom:0">
+        <div class="t"><h3>La herramienta correcta</h3><p>Herramientas de precisión para llegar a cada rincón de la cabina.</p><button class="btn" type="button" data-add="autos">Cotizar mi carro</button></div>
+        <img src="img/car-interior.jpg" alt="Herramienta limpiando el piso de un carro" width="720" height="1280" loading="lazy">
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="how" id="proceso">
+  <div class="wrap">
+    <h2>Del mensaje a todo seco, en cuatro pasos.</h2>
+    <div class="steps" id="steps">
+      <span class="dot" aria-hidden="true"></span>
+      <div class="step"><div class="n">1</div><h3>Escríbenos</h3><p>Cuéntanos qué quieres lavar y en qué zona estás. Puedes mandar fotos.</p></div>
+      <div class="step"><div class="n">2</div><h3>Cotizamos y agendamos</h3><p>Te confirmamos el valor y escogemos el día que mejor te quede.</p></div>
+      <div class="step"><div class="n">3</div><h3>Lavado profundo</h3><p>Llegamos con los equipos adecuados y trabajamos en tu casa o negocio.</p></div>
+      <div class="step"><div class="n">4</div><h3>Secado y entrega</h3><p>Dejamos todo seco y listo para usar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote" id="cotizar">
+  <div class="wrap">
+    <h2>Arma tu pedido y lo enviamos por WhatsApp.</h2>
+    <p class="sub">Marca lo que necesitas lavar. El mensaje se escribe solo y llega listo a Maxxoclean.</p>
+    <div class="q-grid">
+      <form class="q-form" id="qForm" onsubmit="return false">
+        <div class="fld"><span class="lbl" id="lblSvc">¿Qué quieres lavar?</span><div class="opts" id="qOpts" role="group" aria-labelledby="lblSvc"></div></div>
+        <div class="fld"><span class="lbl" id="lblKind">¿Para dónde es?</span>
+          <div class="seg" role="group" aria-labelledby="lblKind">
+            <button type="button" data-kind="Hogar" aria-pressed="true">Hogar</button>
+            <button type="button" data-kind="Negocio" aria-pressed="false">Negocio</button>
+          </div>
+        </div>
+        <div class="two">
+          <div class="fld"><label for="qName">Tu nombre</label><input class="inp" id="qName" autocomplete="name" placeholder="Ej: Laura"></div>
+          <div class="fld"><label for="qZone">Barrio o zona</label><input class="inp" id="qZone" placeholder="Ej: Alto Prado, Barranquilla"></div>
+        </div>
+      </form>
+      <aside>
+        <div class="phone" aria-label="Vista previa del mensaje de WhatsApp">
+          <div class="phone-in">
+            <div class="wa-top"><span class="av"><img src="img/logo-hd.jpg" alt=""></span><div><b>Maxxoclean</b><small>Servicio de limpieza</small></div></div>
+            <div class="wa-body"><div class="bubble-msg" id="bubble"></div></div>
+          </div>
+        </div>
+        <div class="q-actions">
+          <a class="btn" id="qSend" href="https://wa.me/573023779247" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.1c-.25.7-1.45 1.33-2 1.4-.52.07-1.17.1-1.9-.12a17 17 0 0 1-1.72-.64c-3.03-1.3-5-4.35-5.15-4.55-.15-.2-1.23-1.63-1.23-3.1s.78-2.2 1.05-2.5c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.52.25.6.85 2.07.92 2.22.08.15.13.32.03.52-.1.2-.15.32-.3.5-.15.17-.32.38-.45.5-.15.15-.3.31-.13.6.18.3.78 1.28 1.67 2.07 1.14 1.02 2.1 1.33 2.4 1.48.3.15.48.12.65-.07.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.07.12.07.72-.18 1.42Z"/></svg>
+            Enviar por WhatsApp
+          </a>
+          <button class="btn ghost" type="button" id="qCopy">Copiar mensaje</button>
+        </div>
+        <p class="note" id="qNote">Escribe a +57 302 377 9247. Te confirmamos el valor y la fecha.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="mark" id="mark" aria-hidden="true">Maxxoclean</p>
+    <div class="f-grid">
+      <div class="f-brand">
+        <span class="av"><img src="img/logo-hd.jpg" alt="Logo de Maxxoclean" width="84" height="84"></span>
+        <p style="color:#9bbacb;max-width:22em">Lavado y desinfección para hogar y negocio en Barranquilla y área metropolitana.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/573023779247" target="_blank" rel="noopener">WhatsApp +57 302 377 9247</a></li>
+          <li><a href="https://www.instagram.com/maxxoclean/" target="_blank" rel="noopener">Instagram @maxxoclean</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Muebles y colchones</a></li>
+          <li><a href="#servicios">Alfombras y cortinas</a></li>
+          <li><a href="#servicios">Cocinas y pisos</a></li>
+          <li><a href="#servicios">Desinfección y autos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy"><span>Maxxoclean · Barranquilla, Colombia</span><span>Demo de sitio web por <a href="https://miguelposada.dev" target="_blank" rel="noopener">miguelposada.dev</a></span></div>
+  </div>
+</footer>
+
+<a class="fab" id="fab" href="https://wa.me/573023779247" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.1c-.25.7-1.45 1.33-2 1.4-.52.07-1.17.1-1.9-.12a17 17 0 0 1-1.72-.64c-3.03-1.3-5-4.35-5.15-4.55-.15-.2-1.23-1.63-1.23-3.1s.78-2.2 1.05-2.5c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.52.25.6.85 2.07.92 2.22.08.15.13.32.03.52-.1.2-.15.32-.3.5-.15.17-.32.38-.45.5-.15.15-.3.31-.13.6.18.3.78 1.28 1.67 2.07 1.14 1.02 2.1 1.33 2.4 1.48.3.15.48.12.65-.07.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.07.12.07.72-.18 1.42Z"/></svg>
+</a>
+
+<script>
+(function(){
+'use strict';
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce)document.documentElement.classList.add('rm');
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+function $(id){return document.getElementById(id);}
+var nav=$('nav'),bar=$('bar'),fab=$('fab');
+
+/* ---------- clock (Barranquilla) ---------- */
+(function(){
+  var el=$('clock');
+  var f;try{f=new Intl.DateTimeFormat('es-CO',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Bogota'});}catch(e){f=null;}
+  function t(){if(f)el.textContent=f.format(new Date());}
+  t();setInterval(t,15000);
+})();
+
+/* ---------- foam canvas (ambient) ---------- */
+(function(){
+  var c=$('foam'),host=$('stage');
+  var ctx=c.getContext('2d'),W=0,H=0,B=[],mx=-999,my=-999,vis=true,t=0,P=[];
+  function size(){var r=host.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;c.width=W*d;c.height=H*d;ctx.setTransform(d,0,0,d,0,0);var n=Math.round(clamp(W/36,14,34));while(B.length<n)B.push(mk(true));B.length=n;}
+  function mk(i){return{x:Math.random()*W,y:i?Math.random()*H:H+30,r:3+Math.random()*Math.random()*20,vy:.2+Math.random()*.5,ph:Math.random()*6.28,sw:.3+Math.random()*.7};}
+  function frame(){
+    ctx.clearRect(0,0,W,H);t+=.016;
+    for(var i=0;i<B.length;i++){
+      var b=B[i];
+      if(!reduce){b.y-=b.vy;b.x+=Math.sin(t*b.sw+b.ph)*.3;}
+      if(b.y<-40){B[i]=b=mk(false);}
+      var dx=b.x-mx,dy=b.y-my;
+      if(!reduce&&dx*dx+dy*dy<(b.r+14)*(b.r+14)){P.push({x:b.x,y:b.y,r:b.r,l:1});B[i]=mk(false);continue;}
+      var g=ctx.createRadialGradient(b.x-b.r*.3,b.y-b.r*.3,b.r*.1,b.x,b.y,b.r);
+      g.addColorStop(0,'rgba(200,248,255,.04)');g.addColorStop(.8,'rgba(63,220,236,.1)');g.addColorStop(1,'rgba(180,245,255,.34)');
+      ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,6.283);ctx.fillStyle=g;ctx.fill();
+      ctx.lineWidth=1;ctx.strokeStyle='rgba(255,255,255,.3)';ctx.stroke();
+      ctx.beginPath();ctx.arc(b.x-b.r*.35,b.y-b.r*.35,b.r*.22,3.4,4.7);ctx.lineWidth=Math.max(1,b.r*.1);ctx.strokeStyle='rgba(255,255,255,.65)';ctx.stroke();
+    }
+    for(var j=P.length-1;j>=0;j--){var p=P[j];p.l-=.07;p.r+=1.6;if(p.l<=0){P.splice(j,1);continue;}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.lineWidth=2;ctx.strokeStyle='rgba(255,255,255,'+p.l*.7+')';ctx.stroke();}
+    if(vis&&!reduce)requestAnimationFrame(frame);
+  }
+  size();frame();
+  addEventListener('resize',function(){size();if(reduce)frame();});
+  host.addEventListener('pointermove',function(e){var r=host.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+  host.addEventListener('pointerleave',function(){mx=my=-999;});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!vis&&!reduce){vis=true;frame();}else vis=v;},{threshold:0}).observe(host);
+})();
+
+/* ---------- pop particles ---------- */
+(function(){
+  var ring=$('ring');
+  for(var i=0;i<18;i++){
+    var a=i/18*6.283+Math.random()*.3,d=140+Math.random()*220,e=document.createElement('i');
+    e.style.setProperty('--dx',Math.cos(a)*d+'px');e.style.setProperty('--dy',Math.sin(a)*d+'px');e.style.setProperty('--s',(5+Math.random()*12)+'px');
+    ring.appendChild(e);
+  }
+})();
+
+/* ---------- services data + panels ---------- */
+var ICONS={
+  sofa:'<path d="M5 11V9a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v2"/><path d="M2.5 13.5a2 2 0 0 1 4 0V16h11v-2.5a2 2 0 0 1 4 0V19h-19z"/><path d="M5 19v1.5M19 19v1.5"/>',
+  bed:'<path d="M3 19V6M3 14h18v5M21 14v-2a3 3 0 0 0-3-3h-8v5"/><circle cx="6.5" cy="10.5" r="1.6"/>',
+  rug:'<rect x="4" y="6" width="16" height="12" rx="1.5"/><rect x="7" y="9" width="10" height="6"/><path d="M4 8.5H2M4 12H2M4 15.5H2M20 8.5h2M20 12h2M20 15.5h2"/>',
+  curtain:'<path d="M3 4h18"/><path d="M5 4v16M5 4c4 3 5 9 4 16M19 4v16M19 4c-4 3-5 9-4 16"/>',
+  kitchen:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M8 6h.01M12 6h.01"/><circle cx="9" cy="15" r="2"/><circle cx="15" cy="15" r="2"/>',
+  floor:'<rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M3 12h18M12 3v18M7.5 3v9M16.5 12v9"/>',
+  shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  car:'<path d="M5 15l1.6-4.6A2 2 0 0 1 8.5 9h7a2 2 0 0 1 1.9 1.4L19 15"/><rect x="3" y="15" width="18" height="4" rx="1.5"/><path d="M6.5 19v1.5M17.5 19v1.5M7 17h.01M17 17h.01"/>'
+};
+function ico(n,sw){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(sw||1.5)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[n]+'</svg>';}
+var SVC=[
+ {id:'muebles',n:'Muebles',i:'sofa',img:'img/sofa-relax.jpg',alt:'Sofá azul recién lavado',t:'Sofás, sillas, comedores y puffs. Lavado profundo que retira manchas y olores, y los dejamos secos.',tags:['Sofás','Sillas de comedor','Puffs','Poltronas']},
+ {id:'colchones',n:'Colchones',i:'bed',img:'img/svc-colchones.jpg',alt:'Colchón blanco recién lavado con burbujas',t:'Lavado y desinfección de colchones de cualquier tamaño, para un descanso más limpio.',tags:['Sencillo','Doble','Queen','King']},
+ {id:'alfombras',n:'Alfombras',i:'rug',img:'img/svc-alfombras.jpg',alt:'Alfombra siendo lavada con espuma',t:'Limpieza profunda de alfombras y tapetes de hogar y negocio.',tags:['Alfombras','Tapetes','Oficinas']},
+ {id:'cortinas',n:'Cortinas',i:'curtain',img:'img/svc-cortinas.jpg',alt:'Cortinas limpias frente a una ventana',t:'Lavado de cortinas para quitar el polvo acumulado y refrescar tus espacios.',tags:['Sala','Habitaciones','Oficinas']},
+ {id:'cocinas',n:'Cocinas',i:'kitchen',img:'img/svc-cocinas.jpg',alt:'Estufa y campana de cocina limpias',t:'Limpieza profunda de cocinas: desengrase de superficies y zonas difíciles.',tags:['Estufas','Mesones','Campanas']},
+ {id:'pisos',n:'Pisos',i:'floor',img:'img/svc-pisos.jpg',alt:'Piso de porcelanato brillante con escobilla',t:'Lavado de pisos para recuperar el brillo de casas, locales y oficinas.',tags:['Casas','Locales','Oficinas']},
+ {id:'desinfeccion',n:'Desinfección',i:'shield',img:'img/svc-desinfeccion.jpg',alt:'Atomizador desinfectando un sofá',t:'Desinfección de espacios para hogar y negocio, para que todo se sienta más sano.',tags:['Hogar','Negocios']},
+ {id:'autos',n:'Overhaul de autos',i:'car',img:'img/car-red.jpg',alt:'Limpieza a vapor de la cabina de un carro rojo',t:'Limpieza profunda de la cabina de tu carro con los equipos adecuados. No busques el más barato, busca el mejor.',tags:['Tapicería','Pisos y alfombras','Puertas','Cabina completa']}
+];
+var track=$('track');
+(function(){
+  var h='<article class="pan intro"><h2>Ocho servicios, un solo equipo.</h2><p>Desliza para recorrerlos y elige los que necesitas. Cada uno se agrega a tu cotización.</p></article>';
+  SVC.forEach(function(s){
+    h+='<article class="pan'+(s.img?' photo':'')+'">'+(s.img?'<img'+(s.ill?' class="ill"':'')+' src="'+s.img+'" alt="'+s.alt+'" loading="lazy">':'')+(s.img?'':'<div class="big-ico">'+ico(s.i,.8)+'</div>')+'<h3>'+s.n+'</h3><p>'+s.t+'</p><ul class="tags">'+s.tags.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul><div><button type="button" class="btn sm" data-add="'+s.id+'">Cotizar '+s.n.toLowerCase()+'</button></div></article>';
+  });
+  track.innerHTML=h;
+})();
+
+/* ---------- statement words ---------- */
+var words=[];
+(function(){
+  var p=$('big'),txt=p.textContent.trim().split(/\s+/);
+  p.textContent='';
+  txt.forEach(function(w,i){var s=document.createElement('span');s.className='w2';s.textContent=w;p.appendChild(s);if(i<txt.length-1)p.appendChild(document.createTextNode(' '));words.push(s);});
+})();
+
+/* ---------- scroll scenes ---------- */
+var hero=$('hero'),stage=$('stage'),bw=$('bw'),wl=$('wl'),wr=$('wr'),logoIn=$('logoIn'),hint=$('hint'),bgimg=$('bgimg');
+var svcH=$('servicios'),pin=svcH.querySelector('.pin'),hud=svcH.querySelector('.svc-hud'),count=$('svcCount');
+var steps=$('steps'),stepEls=[].slice.call(steps.querySelectorAll('.step'));
+var mark=$('mark'),statement=$('declaracion');
+var popped=false,native=false,trackMax=0;
+
+function layout(){
+  native=reduce||innerWidth<860;
+  svcH.classList.toggle('native',native);
+  if(native){svcH.style.height='';return;}
+  trackMax=Math.max(0,track.scrollWidth-innerWidth+Math.round(innerWidth*.05));
+  svcH.style.height=(trackMax+innerHeight)+'px';
+}
+addEventListener('resize',layout);
+addEventListener('load',layout);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+layout();
+
+function tick(){
+  var vh=innerHeight,y=scrollY||document.documentElement.scrollTop||0;
+  /* chrome */
+  var h=document.documentElement.scrollHeight-vh;
+  bar.style.width=(h>0?y/h*100:0)+'%';
+  nav.classList.toggle('solid',y>vh*.6);
+  fab.classList.toggle('show',y>hero.offsetHeight-vh*.4);
+
+  /* hero */
+  if(!reduce){
+    var r=hero.getBoundingClientRect(),tot=r.height-vh,p=tot>0?clamp(-r.top/tot,0,1):0;
+    var e=ease(clamp(p/.78,0,1)),mob=innerWidth<860;
+    bw.style.transform='scale('+(1+e*9).toFixed(3)+')';
+    var out=1-clamp(p/.42,0,1);
+    wl.style.opacity=wr.style.opacity=out.toFixed(3);
+    if(mob){wl.style.transform='translateY('+(-e*75).toFixed(1)+'vh)';wr.style.transform='translateY('+(e*75).toFixed(1)+'vh)';}
+    else{wl.style.transform='translateX('+(-e*72).toFixed(1)+'vw)';wr.style.transform='translateX('+(e*72).toFixed(1)+'vw)';}
+    logoIn.style.opacity=(1-clamp((p-.03)/.17,0,1)).toFixed(3);
+    bw.style.opacity=(1-clamp((p-.5)/.28,0,1)*.88).toFixed(3);
+    hint.style.opacity=(1-clamp(p/.1,0,1)).toFixed(3);
+    stage.style.setProperty('--dim',(p*.5).toFixed(3));
+    bgimg.style.transform='translateY('+(-p*7).toFixed(2)+'%) scale('+(1+p*.18).toFixed(3)+')';
+    var pop=popped?p>.74:p>.8;
+    if(pop!==popped){popped=pop;stage.classList.toggle('popped',popped);}
+  }
+
+  /* statement words */
+  var sr=statement.getBoundingClientRect(),sp=clamp((vh*.85-sr.top)/(sr.height*.8+vh*.1),0,1),n=Math.round(sp*words.length);
+  if(!reduce)for(var i=0;i<words.length;i++){var on=i<n;if(words[i]._on!==on){words[i]._on=on;words[i].classList.toggle('on',on);}}
+
+  /* services */
+  if(!native){
+    var q=svcH.getBoundingClientRect(),st=q.height-vh,sp2=st>0?clamp(-q.top/st,0,1):0;
+    track.style.transform='translateX('+(-sp2*trackMax).toFixed(1)+'px)';
+    hud.querySelector('.tr').style.setProperty('--sp',(sp2*100).toFixed(1)+'%');
+    count.textContent=(Math.min(9,Math.floor(sp2*9)+1))+' / 9';
+  }
+
+  /* process */
+  var pr=steps.getBoundingClientRect(),pp=clamp((vh*.8-pr.top)/(pr.height*.9+vh*.1),0,1);
+  if(reduce)pp=1;
+  steps.style.setProperty('--fill',(pp*100).toFixed(1)+'%');
+  stepEls.forEach(function(el,i){el.classList.toggle('on',pp>=i/(stepEls.length-1)-.02&&pp>0);});
+
+  /* footer wordmark */
+  var mr=mark.getBoundingClientRect(),mp=clamp((vh-mr.top)/(vh*.55),0,1);
+  mark.style.fontVariationSettings='"wdth" '+(reduce?100:Math.round(55+45*ease(mp)));
+}
+var ticking=false;
+function req(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;tick();});}}
+addEventListener('scroll',req,{passive:true});
+addEventListener('resize',req);
+tick();
+
+/* ---------- magnetic buttons ---------- */
+if(!reduce&&matchMedia('(hover:hover)').matches){
+  document.querySelectorAll('[data-mag]').forEach(function(b){
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.16)+'px,'+((e.clientY-r.top-r.height/2)*.26)+'px)';});
+    b.addEventListener('pointerleave',function(){b.style.transform='';});
+  });
+}
+
+/* ---------- quote builder ---------- */
+var QS={sel:{},kind:'Hogar'};
+var qo=$('qOpts'),nm=$('qName'),zn=$('qZone'),bub=$('bubble'),send=$('qSend'),cp=$('qCopy'),note=$('qNote'),NOTE0=note.textContent;
+SVC.forEach(function(s){
+  var b=document.createElement('button');b.type='button';b.className='opt';b.setAttribute('aria-pressed','false');b.dataset.id=s.id;
+  b.innerHTML='<span class="nm">'+s.n+'</span><span class="pad"></span><span class="qty"><span role="button" tabindex="0" data-d="-1" aria-label="Menos '+s.n+'">−</span><b>1</b><span role="button" tabindex="0" data-d="1" aria-label="Más '+s.n+'">+</span></span>';
+  b.addEventListener('click',function(e){
+    var d=e.target.closest('[data-d]');
+    if(d&&QS.sel[s.id]){var q=QS.sel[s.id]+ +d.dataset.d;if(q<1)delete QS.sel[s.id];else QS.sel[s.id]=Math.min(q,20);}
+    else if(QS.sel[s.id])delete QS.sel[s.id];
+    else QS.sel[s.id]=1;
+    render();
+  });
+  b.addEventListener('keydown',function(e){var d=e.target.closest&&e.target.closest('[data-d]');if(d&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();d.click();}});
+  qo.appendChild(b);
+});
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('[data-add]');if(!a)return;
+  var id=a.getAttribute('data-add');if(!QS.sel[id])QS.sel[id]=1;render();
+  $('cotizar').scrollIntoView({behavior:reduce?'auto':'smooth'});
+});
+document.querySelectorAll('[data-kind]').forEach(function(b){b.addEventListener('click',function(){QS.kind=b.dataset.kind;render();});});
+nm.addEventListener('input',render);zn.addEventListener('input',render);
+function msg(){
+  var items=SVC.filter(function(s){return QS.sel[s.id];}).map(function(s){return '• '+s.n+' x'+QS.sel[s.id];});
+  var L=['Hola Maxxoclean, '+(nm.value.trim()?'soy '+nm.value.trim()+'. ':'')+'quiero cotizar un servicio.',''];
+  if(items.length){L.push('Servicios:');L=L.concat(items);}else L.push('Servicios: (por definir)');
+  L.push('');L.push('Es para: '+QS.kind);
+  if(zn.value.trim())L.push('Zona: '+zn.value.trim());
+  L.push('');L.push('¿Me confirman valor y disponibilidad?');
+  return L.join('\n');
+}
+function render(){
+  [].forEach.call(qo.children,function(b){var q=QS.sel[b.dataset.id];b.setAttribute('aria-pressed',!!q);if(q)b.querySelector('b').textContent=q;});
+  document.querySelectorAll('[data-kind]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.kind===QS.kind);});
+  var m=msg(),d=new Date(),hh=d.getHours()%12||12,mm=('0'+d.getMinutes()).slice(-2);
+  bub.innerHTML='';bub.appendChild(document.createTextNode(m));
+  var tm=document.createElement('time');tm.textContent=hh+':'+mm+' '+(d.getHours()>=12?'p. m.':'a. m.');bub.appendChild(tm);
+  bub.style.animation='none';void bub.offsetWidth;bub.style.animation='';
+  send.href='https://wa.me/573023779247?text='+encodeURIComponent(m);
+}
+cp.addEventListener('click',function(){
+  var m=msg();
+  try{navigator.clipboard.writeText(m).then(function(){flash('Mensaje copiado.');},function(){flash('No se pudo copiar. Selecciona el texto de la burbuja.');});}
+  catch(e){flash('No se pudo copiar. Selecciona el texto de la burbuja.');}
+});
+function flash(t){note.textContent=t;setTimeout(function(){note.textContent=NOTE0;},2600);}
+QS.sel.muebles=1;render();
+})();
+</script>
+</body>
+</html>
