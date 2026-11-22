@@ -102,6 +102,7 @@ nav a:hover{background:var(--strong)}
 .card .price{font-weight:600;color:var(--ink);white-space:nowrap}
 .card .go{font-size:14px;font-weight:600;color:var(--brand)}
 .card[hidden]{display:none}
+@media(min-width:1100px){.cards{grid-template-columns:repeat(5,1fr)}}
 .fine{font-size:13px;color:var(--muted);margin-top:28px}
 
 /* steps */
@@ -114,11 +115,11 @@ nav a:hover{background:var(--strong)}
 @media(max-width:760px){.steps{grid-template-columns:1fr}}
 
 /* ig */
-.ig{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.ig{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
 .ig .ph{aspect-ratio:1;border-radius:var(--r-md);transition:transform .3s var(--ease)}
 .ig a:hover .ph{transform:scale(1.04)}
 .ig a{display:block}
-@media(max-width:820px){.ig{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.ig{grid-template-columns:repeat(2,1fr)}.ig a:first-child{grid-column:span 2}.ig a:first-child .ph{aspect-ratio:2/1}}
 .ig-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
 .handle{display:flex;align-items:center;gap:14px}
 .avatar{width:56px;height:56px;border-radius:50%;padding:3px;background:conic-gradient(#f9a825,#e8412c,#c2185b,#f9a825)}
@@ -146,8 +147,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
-<!-- FOTOS: guarda las imágenes en img/ con estos nombres y aparecen solas:
-     hero-1.jpg … hero-5.jpg, ceviche.jpg, camarones.jpg, pulpo.jpg, langosta.jpg, ostras.jpg, arroz.jpg, parrillada.jpg, eventos.jpg, ig-1.jpg … ig-6.jpg -->
+<!-- FOTOS reales (historias de IG) en img/: langostinos, ceviche, pizza, cocktel, bandeja (.jpg) -->
 <header>
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="Mariscos Gourmet, inicio">
@@ -175,11 +175,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
     </div>
     <div class="mosaic" aria-hidden="true">
-      <div class="ph c1" data-e="🦐" style="--img:url(img/hero-1.jpg)"></div>
-      <div class="ph c2" data-e="🦪" style="--img:url(img/hero-2.jpg)"></div>
-      <div class="ph c3" data-e="🍋" style="--img:url(img/hero-3.jpg)"></div>
-      <div class="ph c4" data-e="🐙" style="--img:url(img/hero-4.jpg)"></div>
-      <div class="ph c5" data-e="🦞" style="--img:url(img/hero-5.jpg)"></div>
+      <div class="ph c1" data-e="🦞" style="--img:url(img/langostinos.jpg)"></div>
+      <div class="ph c2" data-e="🍋" style="--img:url(img/ceviche.jpg)"></div>
+      <div class="ph c3" data-e="🍤" style="--img:url(img/cocktel.jpg)"></div>
+      <div class="ph c4" data-e="🍕" style="--img:url(img/pizza.jpg)"></div>
+      <div class="ph c5" data-e="🍽️" style="--img:url(img/bandeja.jpg)"></div>
     </div>
     <div class="trust">
       <div><i>🧊</i><span><b>Producto fresco</b>Directo del mar</span></div>
@@ -199,14 +199,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <button role="tab" aria-selected="false" data-f="combos"><span>🎉</span>Combos</button>
     </div>
     <div class="cards">
-      <a class="card rv" data-c="frios" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Ceviche%20mixto" target="_blank" rel="noopener"><div class="ph c6" data-e="🍋" style="--img:url(img/ceviche.jpg)"><span class="tag">Favorito</span></div><div><div class="meta"><h3>Ceviche mixto</h3><span class="price">$ —</span></div><p>Pescado, camarón y pulpo curados en limón.</p></div></a>
-      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Camarones%20al%20ajillo" target="_blank" rel="noopener"><div class="ph c1" data-e="🦐" style="--img:url(img/camarones.jpg)"></div><div><div class="meta"><h3>Camarones al ajillo</h3><span class="price">$ —</span></div><p>Jumbo salteados en mantequilla de ajo, con arroz de coco.</p></div></a>
-      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Pulpo%20a%20la%20parrilla" target="_blank" rel="noopener"><div class="ph c4" data-e="🐙" style="--img:url(img/pulpo.jpg)"></div><div><div class="meta"><h3>Pulpo a la parrilla</h3><span class="price">$ —</span></div><p>Tierno por dentro, dorado por fuera, sobre puré rústico.</p></div></a>
-      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Langosta%20thermidor" target="_blank" rel="noopener"><div class="ph c5" data-e="🦞" style="--img:url(img/langosta.jpg)"><span class="tag">Especial</span></div><div><div class="meta"><h3>Langosta thermidor</h3><span class="price">$ —</span></div><p>Gratinada con salsa cremosa de mostaza y queso.</p></div></a>
-      <a class="card rv" data-c="frios" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Ostras%20frescas" target="_blank" rel="noopener"><div class="ph c2" data-e="🦪" style="--img:url(img/ostras.jpg)"></div><div><div class="meta"><h3>Ostras frescas</h3><span class="price">$ —</span></div><p>Media docena abiertas al momento, con limón y mignonette.</p></div></a>
-      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Arroz%20marinero" target="_blank" rel="noopener"><div class="ph c3" data-e="🍚" style="--img:url(img/arroz.jpg)"></div><div><div class="meta"><h3>Arroz marinero</h3><span class="price">$ —</span></div><p>Meloso, con mariscos mixtos y un toque de azafrán.</p></div></a>
-      <a class="card rv" data-c="combos" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20la%20Parrillada%20de%20mariscos" target="_blank" rel="noopener"><div class="ph c1" data-e="🍽️" style="--img:url(img/parrillada.jpg)"><span class="tag">2 a 4 personas</span></div><div><div class="meta"><h3>Parrillada de mariscos</h3><span class="price">$ —</span></div><p>Camarón, calamar, pulpo y pescado con guarniciones.</p></div></a>
-      <a class="card rv" data-c="combos" href="https://wa.me/?text=Hola%2C%20quiero%20cotizar%20una%20bandeja%20para%20evento" target="_blank" rel="noopener"><div class="ph c4" data-e="🎉" style="--img:url(img/eventos.jpg)"></div><div><div class="meta"><h3>Bandejas para eventos</h3><span class="go">Cotizar</span></div><p>Picadas frías y calientes para tus celebraciones.</p></div></a>
+      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Langostinos%20a%20la%20parrilla" target="_blank" rel="noopener"><div class="ph c1" data-e="🦞" style="--img:url(img/langostinos.jpg)"><span class="tag">Favorito</span></div><div><div class="meta"><h3>Langostinos a la parrilla</h3><span class="price">$ —</span></div><p>Dorados a la parrilla, con arroz de zanahoria, patacones y salsas.</p></div></a>
+      <a class="card rv" data-c="frios" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Ceviche%20de%20camar%C3%B3n" target="_blank" rel="noopener"><div class="ph c4" data-e="🍋" style="--img:url(img/ceviche.jpg)"></div><div><div class="meta"><h3>Ceviche de camarón</h3><span class="price">$ —</span></div><p>Camarón curado en limón con cilantro, rodeado de aguacate fresco.</p></div></a>
+      <a class="card rv" data-c="frios" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20C%C3%B3ctel%20de%20camarones" target="_blank" rel="noopener"><div class="ph c5" data-e="🍤" style="--img:url(img/cocktel.jpg)"></div><div><div class="meta"><h3>Cóctel de camarones</h3><span class="price">$ —</span></div><p>Camarones en salsa de la casa, servidos con patacón crocante.</p></div></a>
+      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Pizza%20de%20mariscos" target="_blank" rel="noopener"><div class="ph c3" data-e="🍕" style="--img:url(img/pizza.jpg)"><span class="tag">Especial</span></div><div><div class="meta"><h3>Pizza de mariscos</h3><span class="price">$ —</span></div><p>Camarón, calamar y pulpo sobre queso gratinado y ají.</p></div></a>
+      <a class="card rv" data-c="combos" href="https://wa.me/?text=Hola%2C%20quiero%20cotizar%20una%20bandeja%20para%20compartir" target="_blank" rel="noopener"><div class="ph c2" data-e="🍽️" style="--img:url(img/bandeja.jpg)"><span class="tag">Para eventos</span></div><div><div class="meta"><h3>Bandeja para compartir</h3><span class="go">Cotizar</span></div><p>Arroz, ceviche, fritos y patacones. Ideal para eventos.</p></div></a>
     </div>
     <p class="fine">Precios y disponibilidad según el día. Escríbenos para confirmar.</p>
   </div>
@@ -226,16 +223,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="galeria">
   <div class="wrap">
     <div class="ig-head">
-      <div class="handle"><div class="avatar"><span>🦐</span></div><div><b>@mariscosgourmet</b><small>Síguenos en Instagram</small></div></div>
+      <div class="handle"><div class="avatar"><span>🦞</span></div><div><b>@mariscosgourmet</b><small>Síguenos en Instagram</small></div></div>
       <a class="btn sec" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener">Ver perfil</a>
     </div>
     <div class="ig">
-      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c1" data-e="🦐" style="--img:url(img/ig-1.jpg)"></div></a>
-      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c2" data-e="🦪" style="--img:url(img/ig-2.jpg)"></div></a>
-      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c3" data-e="🍋" style="--img:url(img/ig-3.jpg)"></div></a>
-      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c4" data-e="🐙" style="--img:url(img/ig-4.jpg)"></div></a>
-      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c5" data-e="🦞" style="--img:url(img/ig-5.jpg)"></div></a>
-      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c6" data-e="🐟" style="--img:url(img/ig-6.jpg)"></div></a>
+      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c2" data-e="🍽️" style="--img:url(img/bandeja.jpg)"></div></a>
+      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c5" data-e="🍤" style="--img:url(img/cocktel.jpg)"></div></a>
+      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c1" data-e="🦞" style="--img:url(img/langostinos.jpg)"></div></a>
+      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c4" data-e="🍋" style="--img:url(img/ceviche.jpg)"></div></a>
+      <a class="rv" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener" aria-label="Ver en Instagram"><div class="ph c3" data-e="🍕" style="--img:url(img/pizza.jpg)"></div></a>
     </div>
   </div>
 </section>
