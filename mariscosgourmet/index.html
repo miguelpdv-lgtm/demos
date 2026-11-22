@@ -132,6 +132,13 @@ nav a:hover{background:var(--strong)}
 .contact h2{font-size:clamp(2rem,5vw,3.2rem);max-width:16ch;margin:0 auto 14px}
 .contact p{color:var(--muted);max-width:44ch;margin:0 auto 28px}
 .contact .cta{justify-content:center}
+.info{list-style:none;margin:36px auto 0;padding:0;max-width:760px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);text-align:left}
+.info li{padding:18px 22px;display:grid;gap:4px;align-content:start}
+.info li+li{border-left:1px solid var(--hair)}
+.info b{font-size:13px;color:var(--muted);font-weight:600}
+.info a,.info span{color:var(--ink);font-weight:600;text-decoration:none}
+.info a:hover{color:var(--brand)}
+@media(max-width:700px){.info{grid-template-columns:1fr}.info li+li{border-left:0;border-top:1px solid var(--hair)}}
 footer{border-top:1px solid var(--hair);padding-block:24px;font-size:14px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
@@ -157,7 +164,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <nav aria-label="Principal"><ul>
       <li><a href="#carta">Carta</a></li><li><a href="#pedir">Cómo pedir</a></li><li><a href="#galeria">Instagram</a></li><li><a href="#contacto">Contacto</a></li>
     </ul></nav>
-    <a class="btn pill" href="https://wa.me/" target="_blank" rel="noopener">Pedir ahora</a>
+    <a class="btn pill" href="https://wa.me/573008718556" target="_blank" rel="noopener">Pedir ahora</a>
   </div>
 </header>
 
@@ -169,7 +176,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="hero-side">
         <p>Camarones, pulpo, ceviches y platos de autor, preparados el mismo día. Pide por WhatsApp.</p>
         <div class="cta">
-          <a class="btn" href="https://wa.me/" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+          <a class="btn" href="https://wa.me/573008718556" target="_blank" rel="noopener">Pedir por WhatsApp</a>
           <a class="btn sec" href="#carta">Ver la carta</a>
         </div>
       </div>
@@ -183,8 +190,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
     <div class="trust">
       <div><i>🧊</i><span><b>Producto fresco</b>Directo del mar</span></div>
-      <div><i>🔥</i><span><b>Hecho al momento</b>El mismo día</span></div>
-      <div><i>🛵</i><span><b>A domicilio</b>Y para eventos</span></div>
+      <div><i>🕙</i><span><b>Lun a Sáb</b>10:00 am – 10:00 pm</span></div>
+      <div><i>📍</i><span><b>Valledupar</b>Cra. 15 #12-27</span></div>
     </div>
   </div>
 </section>
@@ -199,11 +206,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <button role="tab" aria-selected="false" data-f="combos"><span>🎉</span>Combos</button>
     </div>
     <div class="cards">
-      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Langostinos%20a%20la%20parrilla" target="_blank" rel="noopener"><div class="ph c1" data-e="🦞" style="--img:url(img/langostinos.jpg)"><span class="tag">Favorito</span></div><div><div class="meta"><h3>Langostinos a la parrilla</h3><span class="price">$ —</span></div><p>Dorados a la parrilla, con arroz de zanahoria, patacones y salsas.</p></div></a>
-      <a class="card rv" data-c="frios" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Ceviche%20de%20camar%C3%B3n" target="_blank" rel="noopener"><div class="ph c4" data-e="🍋" style="--img:url(img/ceviche.jpg)"></div><div><div class="meta"><h3>Ceviche de camarón</h3><span class="price">$ —</span></div><p>Camarón curado en limón con cilantro, rodeado de aguacate fresco.</p></div></a>
-      <a class="card rv" data-c="frios" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20C%C3%B3ctel%20de%20camarones" target="_blank" rel="noopener"><div class="ph c5" data-e="🍤" style="--img:url(img/cocktel.jpg)"></div><div><div class="meta"><h3>Cóctel de camarones</h3><span class="price">$ —</span></div><p>Camarones en salsa de la casa, servidos con patacón crocante.</p></div></a>
-      <a class="card rv" data-c="calientes" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20Pizza%20de%20mariscos" target="_blank" rel="noopener"><div class="ph c3" data-e="🍕" style="--img:url(img/pizza.jpg)"><span class="tag">Especial</span></div><div><div class="meta"><h3>Pizza de mariscos</h3><span class="price">$ —</span></div><p>Camarón, calamar y pulpo sobre queso gratinado y ají.</p></div></a>
-      <a class="card rv" data-c="combos" href="https://wa.me/?text=Hola%2C%20quiero%20cotizar%20una%20bandeja%20para%20compartir" target="_blank" rel="noopener"><div class="ph c2" data-e="🍽️" style="--img:url(img/bandeja.jpg)"><span class="tag">Para eventos</span></div><div><div class="meta"><h3>Bandeja para compartir</h3><span class="go">Cotizar</span></div><p>Arroz, ceviche, fritos y patacones. Ideal para eventos.</p></div></a>
+      <a class="card rv" data-c="calientes" href="https://wa.me/573008718556?text=Hola%2C%20quiero%20pedir%20Langostinos%20a%20la%20parrilla" target="_blank" rel="noopener"><div class="ph c1" data-e="🦞" style="--img:url(img/langostinos.jpg)"><span class="tag">Favorito</span></div><div><div class="meta"><h3>Langostinos a la parrilla</h3><span class="price">$ —</span></div><p>Dorados a la parrilla, con arroz de zanahoria, patacones y salsas.</p></div></a>
+      <a class="card rv" data-c="frios" href="https://wa.me/573008718556?text=Hola%2C%20quiero%20pedir%20Ceviche%20de%20camar%C3%B3n" target="_blank" rel="noopener"><div class="ph c4" data-e="🍋" style="--img:url(img/ceviche.jpg)"></div><div><div class="meta"><h3>Ceviche de camarón</h3><span class="price">$ —</span></div><p>Camarón curado en limón con cilantro, rodeado de aguacate fresco.</p></div></a>
+      <a class="card rv" data-c="frios" href="https://wa.me/573008718556?text=Hola%2C%20quiero%20pedir%20C%C3%B3ctel%20de%20camarones" target="_blank" rel="noopener"><div class="ph c5" data-e="🍤" style="--img:url(img/cocktel.jpg)"></div><div><div class="meta"><h3>Cóctel de camarones</h3><span class="price">$ —</span></div><p>Camarones en salsa de la casa, servidos con patacón crocante.</p></div></a>
+      <a class="card rv" data-c="calientes" href="https://wa.me/573008718556?text=Hola%2C%20quiero%20pedir%20Pizza%20de%20mariscos" target="_blank" rel="noopener"><div class="ph c3" data-e="🍕" style="--img:url(img/pizza.jpg)"><span class="tag">Especial</span></div><div><div class="meta"><h3>Pizza de mariscos</h3><span class="price">$ —</span></div><p>Camarón, calamar y pulpo sobre queso gratinado y ají.</p></div></a>
+      <a class="card rv" data-c="combos" href="https://wa.me/573008718556?text=Hola%2C%20quiero%20cotizar%20una%20bandeja%20para%20compartir" target="_blank" rel="noopener"><div class="ph c2" data-e="🍽️" style="--img:url(img/bandeja.jpg)"><span class="tag">Para eventos</span></div><div><div class="meta"><h3>Bandeja para compartir</h3><span class="go">Cotizar</span></div><p>Arroz, ceviche, fritos y patacones. Ideal para eventos.</p></div></a>
     </div>
     <p class="fine">Precios y disponibilidad según el día. Escríbenos para confirmar.</p>
   </div>
@@ -239,18 +246,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="contacto" class="contact soft">
   <div class="wrap">
     <h2>¿Antojo de mar? Pide hoy.</h2>
-    <p>Domicilios, recogida y eventos. Respondemos por WhatsApp e Instagram.</p>
+    <p>Pedidos, recogida y eventos en Valledupar. Respondemos por WhatsApp e Instagram.</p>
     <div class="cta">
-      <a class="btn" href="https://wa.me/" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn" href="https://wa.me/573008718556" target="_blank" rel="noopener">Escribir por WhatsApp</a>
       <a class="btn sec" href="https://www.instagram.com/mariscosgourmet" target="_blank" rel="noopener">@mariscosgourmet</a>
     </div>
+    <ul class="info">
+      <li><b>Dirección</b><a href="https://www.google.com/maps/search/?api=1&query=Cra.+15+%2312-27+Valledupar+Cesar+Colombia" target="_blank" rel="noopener">Cra. 15 #12-27, Valledupar, Cesar</a></li>
+      <li><b>Horario</b><span>Lunes a sábado, 10:00 am – 10:00 pm</span></li>
+      <li><b>WhatsApp</b><a href="https://wa.me/573008718556" target="_blank" rel="noopener">+57 300 871 8556</a></li>
+    </ul>
   </div>
 </section>
 </main>
 
 <footer><div class="wrap"><span>© Mariscos Gourmet</span><span>Demo de sitio web · miguelposada.dev</span></div></footer>
 
-<a class="wa" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+<a class="wa" href="https://wa.me/573008718556" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2Zm5.200 14.100c-.2.600-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.100-4.500-3.900-4.700-4.100-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.3.500-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.300 2.400 1.500.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.700-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400Z"/></svg>
   <span>Pedir</span>
 </a>
