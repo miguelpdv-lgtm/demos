@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mariscos Gourmet · Valledupar</title>
 <meta name="description" content="Mariscos frescos y platos gourmet en Valledupar. Arma tu pedido y envíalo por WhatsApp.">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,500&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -32,6 +33,20 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-heig
 section{position:relative}
 .pad{padding-block:clamp(72px,10vw,130px)}
 
+/* intro: dura 1.15s en total, sin JS */
+.splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--sand);pointer-events:none;animation:lift .4s cubic-bezier(.7,0,.2,1) .75s forwards}
+.splash img{width:min(66vw,420px);height:auto;animation:pop .5s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:scale(.86) translateY(10px)}to{opacity:1;transform:none}}
+@keyframes lift{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
+.splash{clip-path:inset(0 0 0 0)}
+header{animation:fade .5s ease .6s both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.hero .wrap>div>*{animation:up .6s var(--ease) .6s both}
+.hero .wrap>div>*:nth-child(2){animation-delay:.68s}.hero .wrap>div>*:nth-child(3){animation-delay:.76s}.hero .wrap>div>*:nth-child(4){animation-delay:.84s}
+.stack{animation:up .7s var(--ease) .7s both}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.splash{display:none}}
+
 /* grain */
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 
@@ -48,9 +63,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 header{position:fixed;inset:0 0 auto 0;z-index:40;transition:background .35s,box-shadow .35s}
 header.s{background:rgba(5,32,43,.82);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.08)}
 .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--disp);font-weight:800;font-size:1.3rem}
-.logo i{width:34px;height:34px;border-radius:50%;background:var(--coral);display:grid;place-items:center}
-.logo svg{width:18px;height:18px;color:#fff}
+.logo{display:block;text-decoration:none}
+.logo img{height:54px;width:auto}
 nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-weight:600;font-size:.95rem}
 nav a{text-decoration:none;opacity:.8;transition:opacity .2s}
 nav a:hover{opacity:1}
@@ -59,7 +73,7 @@ nav a:hover{opacity:1}
 .open.on i{background:#3ddc84;box-shadow:0 0 0 0 #3ddc84;animation:pulse 1.8s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
 @media(max-width:900px){nav,.nav .open{display:none}}
-@media(max-width:420px){.logo{font-size:1.1rem}.logo i{width:30px;height:30px}}
+@media(max-width:420px){.logo img{height:38px}}
 
 /* hero */
 .hero{min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:120px 0 90px}
@@ -186,6 +200,7 @@ nav a:hover{opacity:1}
 
 footer{background:#031620;padding:60px 0 100px;overflow:hidden}
 footer .big{font-family:var(--disp);font-weight:800;font-size:clamp(3rem,13vw,11rem);line-height:.9;letter-spacing:-.04em;color:rgba(255,255,255,.07);white-space:nowrap;margin-bottom:26px}
+footer .flogo{height:56px;width:auto;margin-bottom:22px}
 footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.88rem;color:var(--mute)}
 
 /* cart */
@@ -206,9 +221,11 @@ body.cart-on .wa{display:none}
 </head>
 <body>
 
+<div class="splash" aria-hidden="true"><img src="img/logo.png" alt="" width="900" height="397"></div>
+
 <header id="top">
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="Mariscos Gourmet, inicio"><i><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C10 7 7 11 7 16.5a9 9 0 0 0 18 0C25 11 22 7 16 2Z"/></svg></i>Mariscos Gourmet</a>
+    <a class="logo" href="#top" aria-label="Mariscos Gourmet, inicio"><img src="img/logo-light.png" alt="Mariscos Gourmet" width="900" height="397"></a>
     <nav aria-label="Principal"><ul>
       <li><a href="#carta">Carta</a></li><li><a href="#por-que">Por qué</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#visitanos">Visítanos</a></li>
     </ul></nav>
@@ -351,6 +368,7 @@ body.cart-on .wa{display:none}
 <footer>
   <div class="wrap">
     <div class="big" aria-hidden="true">Mariscos Gourmet</div>
+    <img class="flogo" src="img/logo-light.png" alt="Mariscos Gourmet" width="900" height="397" loading="lazy">
     <div class="row"><span>© Mariscos Gourmet · Valledupar</span><span>Demo de sitio web · miguelposada.dev</span></div>
   </div>
 </footer>
